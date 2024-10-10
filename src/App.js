@@ -11,6 +11,7 @@ import UpdateForm from "./components/UpdateForm";
 
 function App() {
   const [items, setItems] = useState([]);
+  const [activeTab, setActiveTab] = useState("all-items");
 
   const addItem = (newItem) => {
     setItems([...items, newItem]);
@@ -30,14 +31,74 @@ function App() {
   return (
     <div className="App">
       <h1>Inventory Management System</h1>
-      <ItemForm addItem={addItem} />
-      <UpdateForm updateItem={updateItem} items={items} />
-      <RemoveForm removeItem={removeItem} items={items} />
-      <CategoryDisplay items={items} />
-      <AllItemsDisplay items={items} />
-      <SearchForm items={items} />
-      <SortItems items={items} />
-      <LowStockItems items={items} />
+
+      {/* Tab Navigation */}
+      <div className="tabs">
+        <button
+          onClick={() => setActiveTab("all-items")}
+          className={activeTab === "all-items" ? "active" : ""}
+        >
+          All Items
+        </button>
+        <button
+          onClick={() => setActiveTab("add-item")}
+          className={activeTab === "add-item" ? "active" : ""}
+        >
+          Add Item
+        </button>
+        <button
+          onClick={() => setActiveTab("update-item")}
+          className={activeTab === "update-item" ? "active" : ""}
+        >
+          Update Item
+        </button>
+        <button
+          onClick={() => setActiveTab("remove-item")}
+          className={activeTab === "remove-item" ? "active" : ""}
+        >
+          Remove Item
+        </button>
+        <button
+          onClick={() => setActiveTab("search-item")}
+          className={activeTab === "search-item" ? "active" : ""}
+        >
+          Search Item By ID
+        </button>
+        <button
+          onClick={() => setActiveTab("category-items")}
+          className={activeTab === "category-items" ? "active" : ""}
+        >
+          Display Items by Category
+        </button>
+        <button
+          onClick={() => setActiveTab("sort-items")}
+          className={activeTab === "sort-items" ? "active" : ""}
+        >
+          Sort Items
+        </button>
+        <button
+          onClick={() => setActiveTab("low-stock")}
+          className={activeTab === "low-stock" ? "active" : ""}
+        >
+          Low Stock Items
+        </button>
+      </div>
+
+      {/* Tab Content */}
+      <div className="tab-content">
+        {activeTab === "all-items" && <AllItemsDisplay items={items} />}
+        {activeTab === "add-item" && <ItemForm addItem={addItem} />}
+        {activeTab === "update-item" && (
+          <UpdateForm updateItem={updateItem} items={items} />
+        )}
+        {activeTab === "remove-item" && (
+          <RemoveForm removeItem={removeItem} items={items} />
+        )}
+        {activeTab === "search-item" && <SearchForm items={items} />}
+        {activeTab === "category-items" && <CategoryDisplay items={items} />}
+        {activeTab === "sort-items" && <SortItems items={items} />}
+        {activeTab === "low-stock" && <LowStockItems items={items} />}
+      </div>
     </div>
   );
 }
