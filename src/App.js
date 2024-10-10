@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import AllItemsDisplay from "./AllItemsDisplay";
-import CategoryDisplay from "./CategoryDisplay";
-import ItemForm from "./ItemForm";
-import LowStockItems from "./LowStockItems";
-import RemoveForm from "./RemoveForm";
-import SearchForm from "./SearchForm";
-import SortItems from "./SortItems";
-import UpdateForm from "./UpdateForm";
+import "./App.css";
+import AllItemsDisplay from "./components/AllItemsDisplay";
+import CategoryDisplay from "./components/CategoryDisplay";
+import ItemForm from "./components/ItemForm";
+import LowStockItems from "./components/LowStockItems";
+import RemoveForm from "./components/RemoveForm";
+import SearchForm from "./components/SearchForm";
+import SortItems from "./components/SortItems";
+import UpdateForm from "./components/UpdateForm";
 
 function App() {
   const [items, setItems] = useState([]);
