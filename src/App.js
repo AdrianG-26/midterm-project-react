@@ -1,3 +1,4 @@
+// src/App.js
 import React, { useState } from "react";
 import "./App.css";
 import AllItemsDisplay from "./components/AllItemsDisplay";
@@ -7,6 +8,7 @@ import LowStockItems from "./components/LowStockItems";
 import RemoveForm from "./components/RemoveForm";
 import SearchForm from "./components/SearchForm";
 import SortItems from "./components/SortItems";
+import TabComponent from "./components/TabComponent";
 import UpdateForm from "./components/UpdateForm";
 
 function App() {
@@ -30,14 +32,32 @@ function App() {
   return (
     <div className="App">
       <h1>Inventory Management System</h1>
-      <ItemForm addItem={addItem} />
-      <UpdateForm updateItem={updateItem} items={items} />
-      <RemoveForm removeItem={removeItem} items={items} />
-      <CategoryDisplay items={items} />
-      <AllItemsDisplay items={items} />
-      <SearchForm items={items} />
-      <SortItems items={items} />
-      <LowStockItems items={items} />
+      <TabComponent>
+        <div label="All Items">
+          <AllItemsDisplay items={items} />
+        </div>
+        <div label="Add Item">
+          <ItemForm addItem={addItem} />
+        </div>
+        <div label="Update Item">
+          <UpdateForm updateItem={updateItem} items={items} />
+        </div>
+        <div label="Remove Item">
+          <RemoveForm removeItem={removeItem} items={items} />
+        </div>
+        <div label="Search">
+          <SearchForm items={items} />
+        </div>
+        <div label="Category Display">
+          <CategoryDisplay items={items} />
+        </div>
+        <div label="Sort Items">
+          <SortItems items={items} />
+        </div>
+        <div label="Low Stock">
+          <LowStockItems items={items} />
+        </div>
+      </TabComponent>
     </div>
   );
 }

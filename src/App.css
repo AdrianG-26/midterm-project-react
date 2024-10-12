@@ -1,40 +1,63 @@
-/* Reset some default browser styles */
+:root {
+  --primary-color: #557C56;
+  --secondary-color: #33372C;
+  --tertiary-color: #B99470;
+  --primary-hover-color: #A6B37D;
+  --primary-background-color: #FFE5CF;
+  --secondary-background-color: #A6B37D;
+  --error-color: red;
+  --success-color: green;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+  font-size: 16px; /* Base font size */
+}
+
 body {
   font-family: "Arial", sans-serif;
-  background-color: #f0f2f5;
-  color: #333;
+  background-color: var(--primary-background-color);
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--secondary-color);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
 }
 
 .App {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  width: 100%;
 }
 
 h1 {
   text-align: center;
-  color: #007bff;
+  color: var(--primary-color);
   margin-bottom: 20px;
+  font-size: 2rem;
 }
 
 /* Styling for forms */
 form {
-  background-color: #fff;
+  background-color: var(--secondary-background-color);
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 8px 7px 24px -5px rgba(0, 0, 0, 0.3);
   margin-bottom: 20px;
 }
 
 form h3 {
   margin-bottom: 15px;
-  color: #333;
+  color: var(--primary-color);
+  font-size: 1.5rem;
 }
 
 input[type="text"],
@@ -43,24 +66,24 @@ select {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 0px;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 button {
   padding: 10px 20px;
   border: none;
-  background-color: #007bff;
-  color: #fff;
-  font-size: 16px;
+  background-color: var(--tertiary-color);
+  color: var(--secondary-color);
+  font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: var(--primary-hover-color);
 }
 
 /* Styling for tables */
@@ -68,28 +91,28 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--secondary-background-color);
+  box-shadow: 8px 7px 24px -5px rgba(0, 0, 0, 0.31);
 }
 
 th,
 td {
   padding: 10px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 0px;
 }
 
 th {
-  background-color: #007bff;
+  background-color: var(--primary-color);
   color: #fff;
 }
 
 tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: var(--tertiary-color);
 }
 
 tr:hover {
-  background-color: #f1f1f1;
+  background-color: var(--primary-hover-color);
 }
 
 /* Styling for messages (success, error) */
@@ -99,9 +122,131 @@ p {
 }
 
 p.error {
-  color: red;
+  color: var(--error-color);
 }
 
 p.success {
-  color: green;
+  color: var(--success-color);
+}
+
+/* Styling for tabs */
+.tab-container {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.tab-buttons {
+  display: flex;
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: var(--tertiary-color);
+  color: var(--secondary-color);
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 5px;
+  white-space: nowrap;
+}
+
+.tab-button:hover {
+  background-color: var(--primary-hover-color);
+  color: #fff;
+}
+
+.tab-button.active {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.tab-content {
+  background-color: var(--secondary-background-color);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+  .App {
+    max-width: 95%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  .App {
+    padding: 15px;
+  }
+
+  form {
+    padding: 15px;
+  }
+
+  .tab-buttons {
+    flex-wrap: wrap;
+  }
+
+  .tab-button {
+    margin-bottom: 5px;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  th,
+  td {
+    padding: 8px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
+
+  .App {
+    padding: 10px;
+  }
+
+  form {
+    padding: 10px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select {
+    font-size: 16px; /* Prevent zoom on focus in iOS */
+  }
+
+  .tab-button {
+    padding: 8px 15px;
+  }
+
+  table {
+    font-size: 0.8rem;
+  }
+
+  th,
+  td {
+    padding: 6px;
+  }
+}
+
+/* For very small screens */
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 10px;
+  }
+
+  .tab-button {
+    padding: 6px 10px;
+  }
 }
