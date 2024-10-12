@@ -33,13 +33,14 @@ function App() {
     <Router>
       <div className="App">
         <h1>Inventory Management System</h1>
-        <nav>
-          {/* Your navigation links here */}
-        </nav>
+        <nav>{/* Your navigation links here */}</nav>
 
         <Routes>
           <Route path="/" element={<AllItemsDisplay items={items} />} />
-          <Route path="/add" element={<ItemForm addItem={addItem} items={items} />} />
+          <Route
+            path="/add"
+            element={<ItemForm addItem={addItem} items={items} />}
+          />
           <Route
             path="/update"
             element={<UpdateForm updateItem={updateItem} items={items} />}

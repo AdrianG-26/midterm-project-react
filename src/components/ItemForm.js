@@ -11,6 +11,12 @@ function ItemForm({ addItem, items = [] }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Check if items is defined before using .some()
+    if (items && items.some((item) => item.id === id)) {
+      alert("This ID already exists. Please use a unique ID.");
+      return;
+    }
+
     // Check if ID is unique
     if (items.some((item) => item.id === id)) {
       alert("This ID already exists. Please use a unique ID.");
