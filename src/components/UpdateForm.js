@@ -3,20 +3,45 @@ import React, { useState } from "react";
 function UpdateForm({ updateItem, items }) {
   const [id, setId] = useState("");
   const [field, setField] = useState("quantity");
-  const [newValue, setNewValue] = useState(0);
+  const [newValue, setNewValue] = useState("");
 
   const handleUpdate = (e) => {
     e.preventDefault();
+
+    // Check if ID exists
     const item = items.find((item) => item.id === id);
-    if (item) {
-      const oldValue = item[field];
-      updateItem(id, field, newValue);
+    if (!item) {
+      alert("Item not found!");
+      return;
+    }
+
+    // Check if new value is a positive number
+    if (field === "quantity" && parseInt(newValue) <= 0) {
+      alert("Quantity must be a positive integer.");
+      return;
+    }
+    if (field === "price" && parseFloat(newValue) <= 0) {
+      alert("Price must be a positive number.");
+      return;
+    }
+
+    updateItem(id, field, newValue);
+
+    // Create a custom alert message
+    if (field === "quantity") {
       alert(
-        `${field} of ${item.name} is updated from ${oldValue} to ${newValue}`
+        `Quantity of Item ${item.name} is updated from ${item.quantity} to ${newValue}`
       );
     } else {
-      alert("Item not found!");
+      alert(
+        `Price of Item ${item.name} is updated from $${item.price} to $${newValue}`
+      );
     }
+
+    // Clear all input fields
+    setId("");
+    setField("quantity");
+    setNewValue("");
   };
 
   return (
@@ -33,13 +58,26 @@ function UpdateForm({ updateItem, items }) {
         <option value="quantity">Quantity</option>
         <option value="price">Price</option>
       </select>
-      <input
-        type="number"
-        placeholder="New Value"
-        value={newValue}
-        onChange={(e) => setNewValue(e.target.value)}
-        required
-      />
+      {field === "quantity" ? (
+        <input
+          type="number"
+          placeholder="Enter here"
+          value={newValue}
+          onChange={(e) => setNewValue(e.target.value)}
+          min="1"
+          required
+        />
+      ) : (
+        <input
+          type="number"
+          placeholder="Enter here"
+          value={newValue}
+          onChange={(e) => setNewValue(e.target.value)}
+          min="0.01"
+          step="0.01"
+          required
+        />
+      )}
       <button type="submit">Update Item</button>
     </form>
   );

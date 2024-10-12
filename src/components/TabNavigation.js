@@ -1,28 +1,28 @@
-// src/components/TabNavigation.js
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-function TabNavigation({ activeTab, setActiveTab }) {
+function TabNavigation() {
   const tabs = [
-    'Add Item',
-    'Update Item',
-    'Remove Item',
-    'Category Display',
-    'All Items',
-    'Search Item',
-    'Sort Items',
-    'Low Stock Items'
+    { name: 'All Items', path: '/all-items' },
+    { name: 'Add Item', path: '/add-item' },
+    { name: 'Update Item', path: '/update-item' },
+    { name: 'Remove Item', path: '/remove-item' },
+    { name: 'Search Item', path: '/search-item' },
+    { name: 'Category Display', path: '/category-display' },
+    { name: 'Sort Items', path: '/sort-items' },
+    { name: 'Low Stock Items', path: '/low-stock' }
   ];
 
   return (
     <div className="tab-navigation">
       {tabs.map((tab, index) => (
-        <button
+        <NavLink
           key={index}
-          className={activeTab === index ? 'active' : ''}
-          onClick={() => setActiveTab(index)}
+          to={tab.path}
+          className={({ isActive }) => isActive ? 'active' : ''}
         >
-          {tab}
-        </button>
+          {tab.name}
+        </NavLink>
       ))}
     </div>
   );

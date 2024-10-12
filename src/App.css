@@ -37,6 +37,26 @@ h1 {
   overflow: hidden;
 }
 
+.tab-navigation a {
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.tab-navigation a.active {
+  background-color: #3498db;
+  color: white;
+}
+
+.tab-navigation a:hover:not(.active) {
+  background-color: #f0f0f0;
+  color: #3498db;
+}
+
 .tab-navigation button {
   padding: 12px 20px;
   border: none;

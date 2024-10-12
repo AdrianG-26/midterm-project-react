@@ -12,6 +12,9 @@ function RemoveForm({ removeItem, items }) {
     } else {
       alert("Item not found!");
     }
+
+    // Clear the input field
+    setId("");
   };
 
   return (

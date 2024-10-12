@@ -15,6 +15,9 @@ function SearchForm({ items }) {
       setFoundItem(null);
       setError("Item not found!");
     }
+
+    // Clear the input field
+    setSearchId("");
   };
 
   return (
@@ -38,7 +41,7 @@ function SearchForm({ items }) {
           <p>ID: {foundItem.id}</p>
           <p>Name: {foundItem.name}</p>
           <p>Quantity: {foundItem.quantity}</p>
-          <p>Price: ${foundItem.price}</p>
+          <p>Price: ₱{foundItem.price}</p>
           <p>Category: {foundItem.category}</p>
         </div>
       )}

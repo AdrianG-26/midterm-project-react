@@ -1,4 +1,11 @@
 import React, { useState } from "react";
+// import React from "react";
+import {
+  Navigate,
+  Route,
+  BrowserRouter as Router,
+  Routes,
+} from "react-router-dom";
 import "./App.css";
 import AllItemsDisplay from "./components/AllItemsDisplay";
 import CategoryDisplay from "./components/CategoryDisplay";
@@ -7,12 +14,11 @@ import LowStockItems from "./components/LowStockItems";
 import RemoveForm from "./components/RemoveForm";
 import SearchForm from "./components/SearchForm";
 import SortItems from "./components/SortItems";
-import UpdateForm from "./components/UpdateForm";
 import TabNavigation from "./components/TabNavigation";
+import UpdateForm from "./components/UpdateForm";
 
 function App() {
   const [items, setItems] = useState([]);
-  const [activeTab, setActiveTab] = useState(0);
 
   const addItem = (newItem) => {
     setItems([...items, newItem]);
@@ -29,28 +35,44 @@ function App() {
     setItems(items.filter((item) => item.id !== id));
   };
 
-  const renderActiveTab = () => {
-    switch(activeTab) {
-      case 0: return <ItemForm addItem={addItem} />;
-      case 1: return <UpdateForm updateItem={updateItem} items={items} />;
-      case 2: return <RemoveForm removeItem={removeItem} items={items} />;
-      case 3: return <CategoryDisplay items={items} />;
-      case 4: return <AllItemsDisplay items={items} />;
-      case 5: return <SearchForm items={items} />;
-      case 6: return <SortItems items={items} />;
-      case 7: return <LowStockItems items={items} />;
-      default: return null;
-    }
-  };
-
   return (
-    <div className="App">
-      <h1>Inventory Management System</h1>
-      <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
-      <div className="tab-content">
-        {renderActiveTab()}
+    <Router>
+      <div className="App">
+        <h1>Inventory Management System</h1>
+        <TabNavigation />
+        <div className="tab-content">
+          <Routes>
+            <Route path="/" element={<Navigate to="/all-items" />} />
+            <Route
+              path="/all-items"
+              element={<AllItemsDisplay items={items} />}
+            />
+            <Route
+              path="/add-item"
+              element={<ItemForm addItem={addItem} items={items} />}
+            />
+            <Route
+              path="/update-item"
+              element={<UpdateForm updateItem={updateItem} items={items} />}
+            />
+            <Route
+              path="/remove-item"
+              element={<RemoveForm removeItem={removeItem} items={items} />}
+            />
+            <Route path="/search-item" element={<SearchForm items={items} />} />
+            <Route
+              path="/category-display"
+              element={<CategoryDisplay items={items} />}
+            />
+            <Route path="/sort-items" element={<SortItems items={items} />} />
+            <Route
+              path="/low-stock"
+              element={<LowStockItems items={items} />}
+            />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
