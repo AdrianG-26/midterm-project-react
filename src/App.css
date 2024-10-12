@@ -1,252 +1,160 @@
 :root {
-  --primary-color: #557C56;
-  --secondary-color: #33372C;
-  --tertiary-color: #B99470;
-  --primary-hover-color: #A6B37D;
-  --primary-background-color: #FFE5CF;
-  --secondary-background-color: #A6B37D;
-  --error-color: red;
-  --success-color: green;
+  --primary-color: #557c56; /* Green */
+  --secondary-color: #33372c; /* Dark olive */
+  --tertiary-color: #b99470; /* Light brown */
+  --background-color: #ffe5cf; /* Cream */
+  --accent-color: #a6b37d; /* Sage green */
+  --text-color: #33372c; /* Dark olive */
+  --table-background-color: #e6d0b8; /* New light brown for table background */
+  --alternate-row-color: #f0e0d0; /* Slightly lighter brown for alternating rows */
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  height: 100%;
-  font-size: 16px; /* Base font size */
 }
 
 body {
   font-family: "Arial", sans-serif;
-  background-color: var(--primary-background-color);
-  background-attachment: fixed;
-  background-size: cover;
-  color: var(--secondary-color);
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
 }
 
 .App {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  width: 100%;
+  text-align: center; /* Center all content in the App */
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+  margin-bottom: 20px;
+  color: var(--primary-color);
 }
 
 h1 {
-  text-align: center;
-  color: var(--primary-color);
+  font-size: 2.5em; /* Make the main title larger */
+  margin-bottom: 30px; /* Add more space below the title */
+}
+
+/* Navigation */
+nav {
   margin-bottom: 20px;
-  font-size: 2rem;
-}
-
-/* Styling for forms */
-form {
-  background-color: var(--secondary-background-color);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 8px 7px 24px -5px rgba(0, 0, 0, 0.3);
-  margin-bottom: 20px;
-}
-
-form h3 {
-  margin-bottom: 15px;
-  color: var(--primary-color);
-  font-size: 1.5rem;
-}
-
-input[type="text"],
-input[type="number"],
-select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 0px;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-button {
-  padding: 10px 20px;
-  border: none;
-  background-color: var(--tertiary-color);
-  color: var(--secondary-color);
-  font-size: 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: var(--primary-hover-color);
-}
-
-/* Styling for tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-  background-color: var(--secondary-background-color);
-  box-shadow: 8px 7px 24px -5px rgba(0, 0, 0, 0.31);
-}
-
-th,
-td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 0px;
-}
-
-th {
-  background-color: var(--primary-color);
-  color: #fff;
-}
-
-tr:nth-child(even) {
-  background-color: var(--tertiary-color);
-}
-
-tr:hover {
-  background-color: var(--primary-hover-color);
-}
-
-/* Styling for messages (success, error) */
-p {
-  margin: 10px 0;
-  padding: 10px;
-}
-
-p.error {
-  color: var(--error-color);
-}
-
-p.success {
-  color: var(--success-color);
-}
-
-/* Styling for tabs */
-.tab-container {
-  width: 100%;
-  margin-top: 20px;
-}
-
-.tab-buttons {
-  display: flex;
   overflow-x: auto;
-  margin-bottom: 20px;
 }
 
-.tab-button {
-  padding: 10px 20px;
-  border: none;
-  background-color: var(--tertiary-color);
-  color: var(--secondary-color);
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-right: 5px;
-  white-space: nowrap;
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between; /* Changed from center to space-between */
+  flex-wrap: nowrap; /* Prevent wrapping */
+  gap: 10px;
+  min-width: max-content; /* Ensure all tabs are visible */
 }
 
-.tab-button:hover {
-  background-color: var(--primary-hover-color);
-  color: #fff;
+nav ul li {
+  flex: 1;
 }
 
-.tab-button.active {
+nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: var(--background-color);
   background-color: var(--primary-color);
-  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
-.tab-content {
-  background-color: var(--secondary-background-color);
+nav ul li a:hover {
+  background-color: var(--accent-color);
+}
+
+/* Forms */
+form {
+  background-color: var(--tertiary-color);
   padding: 20px;
+  margin-bottom: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Design */
-@media screen and (max-width: 1200px) {
-  .App {
-    max-width: 95%;
-  }
+input[type="text"],
+input[type="number"],
+select,
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid var(--accent-color);
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-@media screen and (max-width: 768px) {
-  html {
-    font-size: 14px;
-  }
-
-  .App {
-    padding: 15px;
-  }
-
-  form {
-    padding: 15px;
-  }
-
-  .tab-buttons {
-    flex-wrap: wrap;
-  }
-
-  .tab-button {
-    margin-bottom: 5px;
-  }
-
-  table {
-    font-size: 0.9rem;
-  }
-
-  th,
-  td {
-    padding: 8px;
-  }
+button {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-@media screen and (max-width: 480px) {
-  html {
-    font-size: 12px;
-  }
-
-  .App {
-    padding: 10px;
-  }
-
-  form {
-    padding: 10px;
-  }
-
-  input[type="text"],
-  input[type="number"],
-  select {
-    font-size: 16px; /* Prevent zoom on focus in iOS */
-  }
-
-  .tab-button {
-    padding: 8px 15px;
-  }
-
-  table {
-    font-size: 0.8rem;
-  }
-
-  th,
-  td {
-    padding: 6px;
-  }
+button:hover {
+  background-color: var(--accent-color);
 }
 
-/* For very small screens */
-@media screen and (max-width: 320px) {
-  html {
-    font-size: 10px;
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 20px;
+  background-color: var(--table-background-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+th {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: var(--alternate-row-color);
+}
+
+tr:nth-child(odd) {
+  background-color: var(--table-background-color);
+}
+
+/* Add hover effect for better interactivity */
+tr:hover {
+  background-color: var(--accent-color);
+  transition: background-color 0.3s ease;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  nav ul {
+    justify-content: flex-start; /* Align tabs to the start on smaller screens */
   }
 
-  .tab-button {
-    padding: 6px 10px;
+  nav ul li {
+    flex: 0 0 auto; /* Don't grow or shrink, but allow auto basis */
   }
 }
