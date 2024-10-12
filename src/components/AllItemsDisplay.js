@@ -1,3 +1,6 @@
+import React from "react";
+import "./AllItemsDisplay.css";
+
 function AllItemsDisplay({ items }) {
   return (
     <div>

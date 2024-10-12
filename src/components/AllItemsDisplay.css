@@ -1,0 +1,55 @@
+/* Center the text in the table cells */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+  text-align: center; /* Center the text */
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Adjust the column widths */
+th:nth-child(1),
+td:nth-child(1) {
+  width: 15%; /* Adjust the width of the first column (ID) */
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 25%; /* Adjust the width of the second column (Name) */
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 20%; /* Adjust the width of the third column (Quantity) */
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+  width: 20%; /* Adjust the width of the fourth column (Price) */
+}
+
+th:nth-child(5),
+td:nth-child(5) {
+  width: 20%; /* Adjust the width of the fifth column (Category) */
+}
+
+/* Header background and hover effects for the rows */
+th {
+  background-color: #007bff;
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
