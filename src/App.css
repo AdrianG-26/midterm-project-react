@@ -1,3 +1,21 @@
+:root {
+  --primary-green: #798645;
+  --secondary-green: #626f47;
+  --tertiary-green: #a5b68d;
+  --primary-brown: #b17457;
+  --secondary-brown: #bc9f8b;
+  --tertiary-brown: #914f1e;
+  --quaternary-brown: #ab886d;
+  --primary-cream: #faf7f0;
+  --secondary-cream: #e7e8d8;
+  --tertiary-cream: #fefae0;
+  --quaternary-cream: #fcfaee;
+  --accent-orange: #da8359;
+  --accent-blue: #8cb9bd;
+  --accent-red: #9b4444;
+  --accent-purple: #607274;
+}
+
 /* Reset some default browser styles */
 * {
   margin: 0;
@@ -6,9 +24,9 @@
 }
 
 body {
-  font-family: 'Roboto', Arial, sans-serif;
-  background-color: #f0f2f5;
-  color: #333;
+  font-family: "Roboto", Arial, sans-serif;
+  background-color: var(--primary-cream);
+  color: var(--primary-brown);
   line-height: 1.6;
 }
 
@@ -16,14 +34,17 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  background-color: var(--secondary-cream);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
   text-align: center;
-  color: #2c3e50;
+  color: var(--accent-orange);
   margin-bottom: 30px;
   font-size: 2.5em;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .tab-navigation {
@@ -31,16 +52,16 @@ h1 {
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 30px;
-  background-color: #fff;
+  background-color: var(--primary-green);
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
 .tab-navigation a {
   padding: 12px 20px;
   text-decoration: none;
-  color: #555;
+  color: var(--primary-cream);
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 1em;
@@ -48,20 +69,20 @@ h1 {
 }
 
 .tab-navigation a.active {
-  background-color: #3498db;
-  color: white;
+  background-color: var(--accent-orange);
+  color: var(--primary-cream);
 }
 
 .tab-navigation a:hover:not(.active) {
-  background-color: #f0f0f0;
-  color: #3498db;
+  background-color: var(--tertiary-cream);
+  color: var(--primary-brown);
 }
 
 .tab-navigation button {
   padding: 12px 20px;
   border: none;
-  background-color: transparent;
-  color: #555;
+  background-color: var(--primary-green);
+  color: var(--primary-cream);
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 1em;
@@ -69,47 +90,51 @@ h1 {
 }
 
 .tab-navigation button.active {
-  background-color: #3498db;
-  color: white;
+  background-color: var(--accent-orange);
+  color: var(--primary-cream);
 }
 
 .tab-navigation button:hover:not(.active) {
-  background-color: #f0f0f0;
-  color: #3498db;
+  background-color: var(--tertiary-cream);
+  color: var(--primary-brown);
 }
 
 .tab-content {
-  background-color: #fff;
+  background-color: var(--secondary-cream);
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 form {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  background-color: var(--tertiary-cream);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 form input,
 form select,
 form button {
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--primary-brown);
   border-radius: 4px;
   font-size: 1em;
 }
 
 form button {
-  background-color: #3498db;
-  color: white;
+  background-color: var(--accent-orange);
+  color: var(--primary-cream);
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 form button:hover {
-  background-color: #2980b9;
+  background-color: var(--tertiary-brown);
 }
 
 table {
@@ -119,24 +144,25 @@ table {
   margin-top: 20px;
 }
 
-th, td {
-  border: 1px solid #e0e0e0;
+th,
+td {
+  border: 1px solid var(--primary-brown);
   padding: 12px;
   text-align: left;
 }
 
 th {
-  background-color: #f2f2f2;
+  background-color: var(--secondary-green);
   font-weight: bold;
-  color: #333;
+  color: var(--primary-cream);
 }
 
 tr:nth-child(even) {
-  background-color: #f8f8f8;
+  background-color: var(--tertiary-cream);
 }
 
 tr:hover {
-  background-color: #e8f4f8;
+  background-color: var(--quaternary-cream);
 }
 
 @media (max-width: 768px) {
@@ -156,8 +182,12 @@ tr:hover {
 
 /* Add some animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .tab-content {
