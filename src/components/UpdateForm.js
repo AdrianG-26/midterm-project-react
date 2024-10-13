@@ -5,7 +5,7 @@ function UpdateForm({ updateItem, items }) {
   const [field, setField] = useState("quantity");
   const [newValue, setNewValue] = useState("");
 
-  const handleUpdate = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     // Check if ID exists
@@ -15,37 +15,32 @@ function UpdateForm({ updateItem, items }) {
       return;
     }
 
-    // Check if new value is a positive number
-    if (field === "quantity" && parseInt(newValue) <= 0) {
-      alert("Quantity must be a positive integer.");
-      return;
-    }
-    if (field === "price" && parseFloat(newValue) <= 0) {
-      alert("Price must be a positive number.");
-      return;
-    }
-
-    updateItem(id, field, newValue);
-
-    // Create a custom alert message
+    // Check if new value is a non-negative integer or non-negative number
     if (field === "quantity") {
-      alert(
-        `Quantity of Item ${item.name} is updated from ${item.quantity} to ${newValue}`
-      );
-    } else {
-      alert(
-        `Price of Item ${item.name} is updated from $${item.price} to $${newValue}`
-      );
+      if (newValue < 0 || !Number.isInteger(newValue)) {
+        alert("Quantity must be a non-negative integer.");
+        return;
+      }
+    } else if (field === "price") {
+      if (newValue < 0) {
+        alert("Price must be a non-negative number.");
+        return;
+      }
     }
+
+    const oldValue = field === "quantity" ? item.quantity : item.price;
+    updateItem(id, field, newValue);
 
     // Clear all input fields
     setId("");
     setField("quantity");
     setNewValue("");
+
+    alert(`${field.charAt(0).toUpperCase() + field.slice(1)} of Item ${item.name} is updated from ${oldValue} to ${newValue}`);
   };
 
   return (
-    <form onSubmit={handleUpdate}>
+    <form onSubmit={handleSubmit}>
       <h3>Update Item</h3>
       <input
         type="text"
@@ -54,26 +49,26 @@ function UpdateForm({ updateItem, items }) {
         onChange={(e) => setId(e.target.value)}
         required
       />
-      <select value={field} onChange={(e) => setField(e.target.value)}>
+      <select value={field} onChange={(e) => setField(e.target.value)} required>
         <option value="quantity">Quantity</option>
         <option value="price">Price</option>
       </select>
       {field === "quantity" ? (
         <input
           type="number"
-          placeholder="Enter here"
+          placeholder="New Quantity"
           value={newValue}
-          onChange={(e) => setNewValue(e.target.value)}
-          min="1"
+          onChange={(e) => setNewValue(parseInt(e.target.value, 10))}
+          min="0"
           required
         />
       ) : (
         <input
           type="number"
-          placeholder="Enter here"
+          placeholder="New Price"
           value={newValue}
-          onChange={(e) => setNewValue(e.target.value)}
-          min="0.01"
+          onChange={(e) => setNewValue(parseFloat(e.target.value))}
+          min="0.0"
           step="0.01"
           required
         />

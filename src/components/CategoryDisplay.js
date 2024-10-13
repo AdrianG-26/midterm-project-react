@@ -6,9 +6,9 @@ function CategoryDisplay({ items }) {
   const filteredItems = items.filter((item) => item.category === category);
 
   return (
-    <div>
+    <div className="category-display">
       <h3>Display Items by Category</h3>
-      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+      <select className="select-category" value={category} onChange={(e) => setCategory(e.target.value)}>
         <option value="Clothing">Clothing</option>
         <option value="Electronics">Electronics</option>
         <option value="Entertainment">Entertainment</option>

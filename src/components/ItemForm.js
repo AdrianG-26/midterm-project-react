@@ -3,22 +3,28 @@ import React, { useState } from "react";
 function ItemForm({ addItem, items }) {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("");
+  const [quantity, setQuantity] = useState(0);
+  const [price, setPrice] = useState(0.0);
+  const [category, setCategory] = useState("Clothing");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Check if ID is unique
-    if (items.some(item => item.id === id)) {
+    if (items.some((item) => item.id === id)) {
       alert("This ID already exists. Please use a unique ID.");
       return;
     }
 
-    // Check if quantity and price are greater than 0
-    if (parseInt(quantity) <= 0 || parseFloat(price) <= 0) {
-      alert("Quantity and Price must be greater than 0.");
+    // Check if quantity is a non-negative integer
+    if (quantity < 0 || !Number.isInteger(quantity)) {
+      alert("Quantity must be a non-negative integer.");
+      return;
+    }
+
+    // Check if price is a non-negative number
+    if (price < 0) {
+      alert("Price must be a non-negative number.");
       return;
     }
 
@@ -31,19 +37,21 @@ function ItemForm({ addItem, items }) {
     const newItem = {
       id,
       name,
-      quantity: parseInt(quantity),
-      price: parseFloat(price),
+      quantity,
+      price,
       category,
     };
+
     addItem(newItem);
-    alert("Item added successfully!");
 
     // Clear all input fields
     setId("");
     setName("");
-    setQuantity("");
-    setPrice("");
-    setCategory("");
+    setQuantity(0);
+    setPrice(0.0);
+    setCategory("Clothing");
+
+    alert("Item added successfully!");
   };
 
   return (
@@ -67,24 +75,20 @@ function ItemForm({ addItem, items }) {
         type="number"
         placeholder="Quantity"
         value={quantity}
-        onChange={(e) => setQuantity(e.target.value)}
-        min="1"
+        onChange={(e) => setQuantity(parseInt(e.target.value, 10))}
+        min="0"
         required
       />
       <input
         type="number"
         placeholder="Price"
         value={price}
-        onChange={(e) => setPrice(e.target.value)}
-        min="0.01"
+        onChange={(e) => setPrice(parseFloat(e.target.value))}
+        min="0.0"
         step="0.01"
         required
       />
-      <select 
-        value={category} 
-        onChange={(e) => setCategory(e.target.value)}
-        required
-      >
+      <select value={category} onChange={(e) => setCategory(e.target.value)} required>
         <option value="">Select a category</option>
         <option value="Clothing">Clothing</option>
         <option value="Electronics">Electronics</option>

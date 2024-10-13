@@ -28,5 +28,4 @@ function AllItemsDisplay({ items }) {
   );
 }
 
-
 export default AllItemsDisplay;
