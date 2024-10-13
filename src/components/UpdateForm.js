@@ -8,14 +8,12 @@ function UpdateForm({ updateItem, items }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Check if ID exists
     const item = items.find((item) => item.id === id);
     if (!item) {
       alert("Item not found!");
       return;
     }
 
-    // Check if new value is a non-negative integer or non-negative number
     if (field === "quantity") {
       if (newValue < 0 || !Number.isInteger(newValue)) {
         alert("Quantity must be a non-negative integer.");
@@ -31,7 +29,6 @@ function UpdateForm({ updateItem, items }) {
     const oldValue = field === "quantity" ? item.quantity : item.price;
     updateItem(id, field, newValue);
 
-    // Clear all input fields
     setId("");
     setField("quantity");
     setNewValue("");

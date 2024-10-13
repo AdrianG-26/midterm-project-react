@@ -10,25 +10,23 @@ function ItemForm({ addItem, items }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Check if ID is unique
+    
     if (items.some((item) => item.id === id)) {
       alert("This ID already exists. Please use a unique ID.");
       return;
     }
 
-    // Check if quantity is a non-negative integer
+    
     if (quantity < 0 || !Number.isInteger(quantity)) {
       alert("Quantity must be a non-negative integer.");
       return;
     }
 
-    // Check if price is a non-negative number
     if (price < 0) {
       alert("Price must be a non-negative number.");
       return;
     }
 
-    // Check if a valid category is selected
     if (!["Clothing", "Electronics", "Entertainment"].includes(category)) {
       alert("Please select a valid category.");
       return;
@@ -44,7 +42,6 @@ function ItemForm({ addItem, items }) {
 
     addItem(newItem);
 
-    // Clear all input fields
     setId("");
     setName("");
     setQuantity(0);

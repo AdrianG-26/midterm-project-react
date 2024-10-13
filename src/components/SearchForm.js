@@ -16,7 +16,6 @@ function SearchForm({ items }) {
       setError("Item not found!");
     }
 
-    // Clear the input field
     setSearchId("");
   };
 
